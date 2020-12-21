@@ -67,12 +67,14 @@ export default function Home() {
 
   return (
     <Fragment>
+      <div className='iconLoading'>
+        {state.loading && (
+          <div>
+            <LoadingIcon height='100px' width='100px' color='#0366d6' />
+          </div>
+        )}
+      </div>
       <header>
-        <div className='iconLoading'>
-          {state.loading && (
-            <LoadingIcon height='45px' width='45px' color='#0366d6' />
-          )}
-        </div>
         <div>
           <span>{localStorage.getItem('username')}</span>
           <UserIcon height='45px' width='45px' color='#0366d6' />
