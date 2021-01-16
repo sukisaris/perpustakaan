@@ -6,6 +6,7 @@ export default function LoadingIcon(props) {
       width={props.width}
       height={props.height}
       fill={props.color}
+      id={props.id}
       viewBox='0 0 399.389 399.389'>
       <g>
         <path

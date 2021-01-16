@@ -2,10 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { postData } from '../../library/AxiosLib';
 import { ServerURL } from '../../config/default.json';
+import LoadingIcon from '../../assets/icon/LoadingIcon';
 import './Register.css';
 
 export default function Register() {
   const [formRegister, setFormRegister] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const inputEmail = useRef(null);
   const inputUsername = useRef(null);
@@ -14,9 +16,10 @@ export default function Register() {
 
   const history = useHistory();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
+    setLoading(true);
     if (formRegister.password === formRegister.verify) {
-      postData(`${ServerURL}/user`, formRegister)
+      const postDataRs = postData(`${ServerURL}/user`, formRegister)
         .then(function () {
           history.push('/login');
         })
@@ -25,6 +28,8 @@ export default function Register() {
             alert('account alredy register');
           }
         });
+
+      postDataRs && setLoading(false);
     } else {
       alert('password not match');
     }
@@ -88,7 +93,10 @@ export default function Register() {
           onChange={handleChange}
           ref={inputVerify}
         />
-        <button type='submit'>Submit</button>
+        <button type='submit'>
+          {' '}
+          {loading ? <LoadingIcon width={'25px'} color={'white'} id={'iconLoading'} /> : 'Submit'}
+        </button>
         <Link to='/login'>Login</Link>
       </form>
     </div>

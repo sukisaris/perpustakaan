@@ -72,3 +72,13 @@
     width: 90%;
   }
 }
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#iconLoading {
+  animation: spin 1s linear infinite;
+}
