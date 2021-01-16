@@ -1,11 +1,11 @@
-.dashboard > div {
+.dashboard > div:nth-child(1) {
   background-color: white;
   padding: 20px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-.dashboard > div > div {
+.dashboard > div:nth-child(1) > div {
   height: 100px;
   width: 200px;
   margin: 10px;
@@ -15,12 +15,17 @@
   flex-direction: column;
   justify-content: space-between;
 }
-.dashboard > div > div:nth-child(1) {
+.dashboard > div:nth-child(1) > div:nth-child(1) {
   background-color: #b392f0;
 }
-.dashboard > div > div:nth-child(2) {
+.dashboard > div:nth-child(1) > div:nth-child(2) {
   background-color: #ffab70;
 }
-.dashboard > div > div:nth-child(3) {
+.dashboard > div:nth-child(1) > div:nth-child(3) {
   background-color: #f97583;
+}
+.dashboard > div:nth-child(2) {
+  margin-top: 10px;
+  padding: 20px;
+  background-color: white;
 }
