@@ -16,11 +16,12 @@ export default function Register() {
 
   const history = useHistory();
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     setLoading(true);
     if (formRegister.password === formRegister.verify) {
-      const postDataRs = postData(`${ServerURL}/user`, formRegister)
+      postData(`${ServerURL}/user`, formRegister)
         .then(function () {
+          setLoading(false);
           history.push('/login');
         })
         .catch(function (error) {
@@ -28,8 +29,6 @@ export default function Register() {
             alert('account alredy register');
           }
         });
-
-      postDataRs && setLoading(false);
     } else {
       alert('password not match');
     }

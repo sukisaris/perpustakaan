@@ -13,18 +13,17 @@ export default function Login() {
 
   const history = useHistory();
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     setLoading(true);
 
-    const postDataRs = await postData(`${ServerURL}/login`, formLogin).then(function (response) {
+    postData(`${ServerURL}/login`, formLogin).then(function (response) {
       const { token, username } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('username', username);
       localStorage.setItem('exp', new Date(Date.now() + 3600 * 1000 * 24));
+      setLoading(false);
       history.push('/home');
     });
-
-    postDataRs && setLoading(false);
 
     e.preventDefault();
   }
