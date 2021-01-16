@@ -14,16 +14,18 @@ export default function Login() {
   const history = useHistory();
 
   function handleSubmit(e) {
-    setLoading(true);
+    if (!loading) {
+      setLoading(true);
 
-    postData(`${ServerURL}/login`, formLogin).then(function (response) {
-      const { token, username } = response.data;
-      localStorage.setItem('token', token);
-      localStorage.setItem('username', username);
-      localStorage.setItem('exp', new Date(Date.now() + 3600 * 1000 * 24));
-      setLoading(false);
-      history.push('/home');
-    });
+      postData(`${ServerURL}/login`, formLogin).then(function (response) {
+        const { token, username } = response.data;
+        localStorage.setItem('token', token);
+        localStorage.setItem('username', username);
+        localStorage.setItem('exp', new Date(Date.now() + 3600 * 1000 * 24));
+        setLoading(false);
+        history.push('/home');
+      });
+    }
 
     e.preventDefault();
   }

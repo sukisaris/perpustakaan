@@ -17,26 +17,28 @@ export default function Register() {
   const history = useHistory();
 
   function handleSubmit(e) {
-    setLoading(true);
-    if (formRegister.password === formRegister.verify) {
-      postData(`${ServerURL}/user`, formRegister)
-        .then(function () {
-          setLoading(false);
-          history.push('/login');
-        })
-        .catch(function (error) {
-          if (error.response.status === 404) {
-            alert('account alredy register');
-          }
-        });
-    } else {
-      alert('password not match');
-    }
+    if (!loading) {
+      setLoading(true);
+      if (formRegister.password === formRegister.verify) {
+        postData(`${ServerURL}/user`, formRegister)
+          .then(function () {
+            setLoading(false);
+            history.push('/login');
+          })
+          .catch(function (error) {
+            if (error.response.status === 404) {
+              alert('account alredy register');
+            }
+          });
+      } else {
+        alert('password not match');
+      }
 
-    inputEmail.current.value = null;
-    inputUsername.current.value = null;
-    inputPassword.current.value = null;
-    inputVerify.current.value = null;
+      inputEmail.current.value = null;
+      inputUsername.current.value = null;
+      inputPassword.current.value = null;
+      inputVerify.current.value = null;
+    }
 
     e.preventDefault();
   }
