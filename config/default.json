@@ -1,0 +1,4 @@
+{
+  "MongoURI": "mongodb+srv://sukis123:root@cluster0.v6thy.mongodb.net/library_management?retryWrites=true&w=majority",
+  "SecretKey": "Sikopet"
+}
